@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.23041.200" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>Msunduzieforms</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="Msunduzi e-forms" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.4</Version>
+    <Managed>1</Managed>
+    <Publisher>
+      <UniqueName>Cr4d7dc</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="CDS Default Publisher" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>cr179</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>39095</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="29" id="{1198614a-04d9-ed11-a7c7-000d3a272709}" behavior="0" />
+      <RootComponent type="29" id="{2b99614a-04d9-ed11-a7c7-000d3a272709}" behavior="0" />
+      <RootComponent type="29" id="{2c99614a-04d9-ed11-a7c7-000d3a272709}" behavior="0" />
+      <RootComponent type="29" id="{2d99614a-04d9-ed11-a7c7-000d3a272709}" behavior="0" />
+      <RootComponent type="29" id="{2e99614a-04d9-ed11-a7c7-000d3a272709}" behavior="0" />
+      <RootComponent type="29" id="{3d2d409a-11dd-ed11-8847-6045bd41c5e2}" behavior="0" />
+      <RootComponent type="29" id="{3e9a614a-04d9-ed11-a7c7-000d3a272709}" behavior="0" />
+      <RootComponent type="29" id="{54076441-6cdf-ed11-8847-6045bd41c5e2}" behavior="0" />
+      <RootComponent type="29" id="{84020c81-20dd-ed11-8847-6045bd41c5e2}" behavior="0" />
+      <RootComponent type="29" id="{875e691e-21dd-ed11-8847-002248cea9f9}" behavior="0" />
+      <RootComponent type="29" id="{8ff45bb4-d3da-ed11-a7c6-002248cea9f9}" behavior="0" />
+      <RootComponent type="29" id="{943b3643-28dd-ed11-8847-6045bd41c5e2}" behavior="0" />
+      <RootComponent type="29" id="{a4085627-40dd-ed11-8847-002248cea9f9}" behavior="0" />
+      <RootComponent type="29" id="{bbbcadeb-c8da-ed11-a7c6-002248cea9f9}" behavior="0" />
+      <RootComponent type="29" id="{f04d661c-fadc-ed11-8847-6045bd41c5e2}" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="ADD, MODIFY AND REMOVE USER APPLICATION" id="{1198614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="USER ACCOUNT FORM – SYSTEMS or APPLICATIONS HEAT" id="{2b99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="STUDY ASSISTANCE SCHEME" id="{2c99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="Conference Application" id="{2d99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="REQUEST FOR REFUND" id="{2e99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="PROFESSIONAL MEMBERSHIP" id="{3d2d409a-11dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="VPN ACCESS APPLICATION FORM" id="{3e9a614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="INTERNSHIP APPLICATION" id="{84020c81-20dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="EXIT CLEARANCE FORM" id="{875e691e-21dd-ed11-8847-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="MTN Bulk SMS" id="{8ff45bb4-d3da-ed11-a7c6-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="CELLUAR AND DATA CARD ALLOWANCE" id="{943b3643-28dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="APPLICATION FOR ATTENDING TRAINING COURSE" id="{a4085627-40dd-ed11-8847-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="INTERNET ACCESS APPLICATION " id="{bbbcadeb-c8da-ed11-a7c6-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedmicrosoftforms_976fd" solution="Active" id.connectionreferencelogicalname="cr179_sharedmicrosoftforms_976fd" />
+        <Dependent type="29" displayName="EXIT ADVICE FORM" id="{f04d661c-fadc-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="ADD, MODIFY AND REMOVE USER APPLICATION" id="{1198614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="USER ACCOUNT FORM – SYSTEMS or APPLICATIONS HEAT" id="{2b99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="STUDY ASSISTANCE SCHEME" id="{2c99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="Conference Application" id="{2d99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="PROFESSIONAL MEMBERSHIP" id="{3d2d409a-11dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="VPN ACCESS APPLICATION FORM" id="{3e9a614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="INTERNSHIP APPLICATION" id="{84020c81-20dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="EXIT CLEARANCE FORM" id="{875e691e-21dd-ed11-8847-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="MTN Bulk SMS" id="{8ff45bb4-d3da-ed11-a7c6-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="CELLUAR AND DATA CARD ALLOWANCE" id="{943b3643-28dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="APPLICATION FOR ATTENDING TRAINING COURSE" id="{a4085627-40dd-ed11-8847-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="INTERNET ACCESS APPLICATION " id="{bbbcadeb-c8da-ed11-a7c6-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365groups_b9e21" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365groups_b9e21" />
+        <Dependent type="29" displayName="EXIT ADVICE FORM" id="{f04d661c-fadc-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="ADD, MODIFY AND REMOVE USER APPLICATION" id="{1198614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="USER ACCOUNT FORM – SYSTEMS or APPLICATIONS HEAT" id="{2b99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="STUDY ASSISTANCE SCHEME" id="{2c99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="Conference Application" id="{2d99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="REQUEST FOR REFUND" id="{2e99614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="PROFESSIONAL MEMBERSHIP" id="{3d2d409a-11dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="VPN ACCESS APPLICATION FORM" id="{3e9a614a-04d9-ed11-a7c7-000d3a272709}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="INTERNSHIP APPLICATION" id="{84020c81-20dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="EXIT CLEARANCE FORM" id="{875e691e-21dd-ed11-8847-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="MTN Bulk SMS" id="{8ff45bb4-d3da-ed11-a7c6-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="CELLUAR AND DATA CARD ALLOWANCE" id="{943b3643-28dd-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="APPLICATION FOR ATTENDING TRAINING COURSE" id="{a4085627-40dd-ed11-8847-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="INTERNET ACCESS APPLICATION " id="{bbbcadeb-c8da-ed11-a7c6-002248cea9f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="cr179_sharedoffice365users_92015" solution="Active" id.connectionreferencelogicalname="cr179_sharedoffice365users_92015" />
+        <Dependent type="29" displayName="EXIT ADVICE FORM" id="{f04d661c-fadc-ed11-8847-6045bd41c5e2}" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

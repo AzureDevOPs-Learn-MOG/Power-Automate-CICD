@@ -1,0 +1,798 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_microsoftforms_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedmicrosoftforms_976fd"
+        },
+        "api": {
+          "name": "shared_microsoftforms"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedoffice365_d96bc"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_wordonlinebusiness_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedwordonlinebusiness_5cc97"
+        },
+        "api": {
+          "name": "shared_wordonlinebusiness"
+        }
+      },
+      "shared_adobepdftools_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedadobepdftools_00927"
+        },
+        "api": {
+          "name": "shared_adobepdftools"
+        }
+      },
+      "shared_adobesign_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedadobesign_d5ca8"
+        },
+        "api": {
+          "name": "shared_adobesign"
+        }
+      },
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedsharepointonline_0442e"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365users_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedoffice365users_92015"
+        },
+        "api": {
+          "name": "shared_office365users"
+        }
+      },
+      "shared_office365groups": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedoffice365groups_b9e21"
+        },
+        "api": {
+          "name": "shared_office365groups"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_new_response_is_submitted": {
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "09701f2f-5db9-462d-9a52-d4ef61f0f2e0"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_microsoftforms_1",
+              "operationId": "CreateFormWebhook",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms"
+            },
+            "parameters": {
+              "form_id": "P1xbJFWj6kaFMPRsd6DJyleBi50AVANPgFhIBvULuktURVVMOU9TOTNaMldETktaUUhPR1BPUzhPMyQlQCN0PWcu"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_response_details": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a3b10c8b-893a-46a4-859d-3bc7d3caf7ad"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_microsoftforms_1",
+              "operationId": "GetFormResponseById",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms"
+            },
+            "parameters": {
+              "form_id": "P1xbJFWj6kaFMPRsd6DJyleBi50AVANPgFhIBvULuktURVVMOU9TOTNaMldETktaUUhPR1BPUzhPMyQlQCN0PWcu",
+              "response_id": "@triggerOutputs()?['body/resourceData/responseId']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_an_email_-_Applicant": {
+          "runAfter": {
+            "Scope": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5aef2aa5-7367-4b40-af82-43e220f3eff2"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365_1",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@outputs('Get_response_details')?['body/re9e8b462ff2d4d78b7b26377db18cd7c']",
+              "emailMessage/Subject": "@{outputs('Get_response_details')?['body/rcd3a84f4d5364088b409fb92b0eba333']} User Application ",
+              "emailMessage/Body": "<p>Hi @{outputs('Get_response_details')?['body/r024353fcb03940a3a08b58377df4454b']} @{outputs('Get_response_details')?['body/rd928368752d3486a8b6543adc54a266a']}.<br>\n<br>\nYour request for User Application has been submitted.<br>\n<br>\nKind regards,<br>\n<br>\nMsunduzi</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Populate_a_Microsoft_Word_template": {
+          "runAfter": {
+            "Send_an_email_-_Applicant": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "012SJIWHQSMOAROZZV5RDIIEDFXUPH4AQU": "/Templates/2.Application for Internet Access.docx",
+            "operationMetadataId": "ec6f57c9-dd77-47eb-9b4e-981904d41357",
+            "012SJIWHXPDINHT26L7ZCZPVAAAMUKB5SF": "/Templates/3.Application for VPN Access.docx",
+            "012SJIWHTUTZ7ZWGA3LZEZWUX2MBV5HZFK": "/Templates/1.New User Application.docx"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_wordonlinebusiness_1",
+              "operationId": "CreateFileItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+            },
+            "parameters": {
+              "source": "groups/9d8b8157-5400-4f03-8058-4806f50bba4b",
+              "drive": "b!uCWque-kv0edFfaaVvl3c64TCXb86ZJIqdQmmkDooA4OtDbVvZZATYLLLQ84eQUt",
+              "file": "012SJIWHTUTZ7ZWGA3LZEZWUX2MBV5HZFK",
+              "dynamicFileSchema/42722369": "@outputs('Get_response_details')?['body/r49dfb13cb7ef46c18fc6dc9451acb2d9']",
+              "dynamicFileSchema/137703896": "@outputs('Get_response_details')?['body/r784af90761a94abeac1321c0c816f4fc']",
+              "dynamicFileSchema/351773657": "@outputs('Get_response_details')?['body/rdd7ae967ba964f2f93eb39ed09c16e43']",
+              "dynamicFileSchema/481510697": "@outputs('Get_response_details')?['body/rf9ad9eaf839140e99a78b8b9b287477a']",
+              "dynamicFileSchema/510806792": "@outputs('Get_response_details')?['body/r96c38dabaa9b4a108524277729ee579a']",
+              "dynamicFileSchema/519522268": "@outputs('Get_response_details')?['body/r8a8216f5d4b9491d8c562233ab5261c0']",
+              "dynamicFileSchema/1252858505": "@outputs('Get_response_details')?['body/r1fdaf83a7e5248c7b9797b6784728e08']",
+              "dynamicFileSchema/1466002054": "@outputs('Get_response_details')?['body/red49a0a2a28641c9b167eafabeebe02b']",
+              "dynamicFileSchema/1579937509": "@outputs('Get_response_details')?['body/rfce37464f0ce4223b1b48d6b55e9c2d4']",
+              "dynamicFileSchema/1924611611": "@outputs('Get_response_details')?['body/r613646017dae4c4988d038cb46889cc6']",
+              "dynamicFileSchema/1985425764": "@outputs('Get_response_details')?['body/r0feceb1d01874425871f079e11f2902b']",
+              "dynamicFileSchema/-1315260621": "@outputs('Get_response_details')?['body/r024353fcb03940a3a08b58377df4454b']",
+              "dynamicFileSchema/-1868132453": "@outputs('Get_response_details')?['body/rd928368752d3486a8b6543adc54a266a']",
+              "dynamicFileSchema/-503510364": "@outputs('Get_response_details')?['body/r8b0892c849254ebebf1ea58956cd85df']",
+              "dynamicFileSchema/-1377239389": "@outputs('Get_response_details')?['body/r1c58b49f9a4947eb9e8d7876c0ecdb07']",
+              "dynamicFileSchema/-1444985991": "@outputs('Get_response_details')?['body/r11f2a9089ada41a09a263699bf445e99']",
+              "dynamicFileSchema/-1575728798": "@outputs('Get_response_details')?['body/r8895fd5b710f43f8bf213e90f88c04b9']",
+              "dynamicFileSchema/-1338759184": "@outputs('Get_response_details')?['body/re9e8b462ff2d4d78b7b26377db18cd7c']",
+              "dynamicFileSchema/-599725913": "@outputs('Get_response_details')?['body/rcd3a84f4d5364088b409fb92b0eba333']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Convert_Word_to_PDF": {
+          "runAfter": {
+            "Populate_a_Microsoft_Word_template": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8b3ec345-53f6-4f00-a166-0d246a35b3d1"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_adobepdftools_1",
+              "operationId": "CreatePDFFromWord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_adobepdftools"
+            },
+            "parameters": {
+              "inputFileName": "@{outputs('Get_response_details')?['body/rcd3a84f4d5364088b409fb92b0eba333']} User Application - @{outputs('Get_response_details')?['body/r024353fcb03940a3a08b58377df4454b']} @{outputs('Get_response_details')?['body/rd928368752d3486a8b6543adc54a266a']}- @{outputs('Unique_Identifier')} .docx",
+              "InputFile0/body": "@body('Populate_a_Microsoft_Word_template')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Upload_a_document_and_get_a_document_ID": {
+          "runAfter": {
+            "Convert_Word_to_PDF": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9a48cca9-ffa2-48c9-9483-e60997fa0ffd"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_adobesign_1",
+              "operationId": "CreateTransientDocument_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_adobesign"
+            },
+            "parameters": {
+              "File-Name": "@outputs('Convert_Word_to_PDF')?['body/fileName']",
+              "File/body": "@outputs('Convert_Word_to_PDF')?['body/fileContent']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Create_an_agreement_from_an_uploaded_document_and_send_for_signature": {
+          "runAfter": {
+            "Upload_a_document_and_get_a_document_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6e713dbb-d5fb-4a26-8647-fd4b44cc911d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_adobesign_1",
+              "operationId": "CreateAgreementById_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_adobesign"
+            },
+            "parameters": {
+              "AgreementCreationInfoIdV6/name": "@outputs('Convert_Word_to_PDF')?['body/fileName']",
+              "AgreementCreationInfoIdV6/fileInfos": [
+                {
+                  "transientDocumentId": "@outputs('Upload_a_document_and_get_a_document_ID')?['body/transientDocumentId']"
+                }
+              ],
+              "AgreementCreationInfoIdV6/signatureType": "ESIGN",
+              "AgreementCreationInfoIdV6/participantSetsInfo": [
+                {
+                  "memberInfos": [
+                    {
+                      "email": "milasandeit@gmail.com"
+                    }
+                  ],
+                  "order": 1,
+                  "role": "SIGNER"
+                },
+                {
+                  "memberInfos": [
+                    {
+                      "email": "milasandeit@gmail.com"
+                    }
+                  ],
+                  "order": 2,
+                  "role": "SIGNER"
+                },
+                {
+                  "memberInfos": [
+                    {
+                      "email": "milasandeit@gmail.com"
+                    }
+                  ],
+                  "order": 3,
+                  "role": "SIGNER"
+                },
+                {
+                  "memberInfos": [
+                    {
+                      "email": "milasandeit@gmail.com"
+                    }
+                  ],
+                  "order": 4,
+                  "role": "SIGNER"
+                }
+              ],
+              "AgreementCreationInfoIdV6/message": "Please review and complete this document",
+              "AgreementCreationInfoIdV6/reminderFrequency": "DAILY_UNTIL_SIGNED",
+              "AgreementCreationInfoIdV6/emailOption/sendOptions/initEmails": "ALL"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Do_until": {
+          "actions": {
+            "Delay": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d242bf08-63f8-44a5-bf12-39895a8ff065"
+              },
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 1,
+                  "unit": "Minute"
+                }
+              }
+            },
+            "Get_the_status_of_an_agreement": {
+              "runAfter": {
+                "Delay": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ed71f604-c2fe-4d6a-a6ed-dc6c085e604f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_adobesign_1",
+                  "operationId": "GetAgreementInfo_V2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_adobesign"
+                },
+                "parameters": {
+                  "agreementId": "@outputs('Create_an_agreement_from_an_uploaded_document_and_send_for_signature')?['body/id']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Create_an_agreement_from_an_uploaded_document_and_send_for_signature": [
+              "Succeeded"
+            ]
+          },
+          "expression": "@equals(outputs('Get_the_status_of_an_agreement')?['body/status'], 'SIGNED')",
+          "limit": {
+            "count": 5000,
+            "timeout": "P3D"
+          },
+          "metadata": {
+            "operationMetadataId": "38498b1f-994a-4183-ac81-122922a6f5c2"
+          },
+          "type": "Until"
+        },
+        "Initialize_variable_-_Adobe_Sign_Response": {
+          "runAfter": {
+            "Do_until": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e324aff4-ba35-4d90-ade6-b7581b74c6a6"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Adobe Sign Response",
+                "type": "string",
+                "value": "@outputs('Get_the_status_of_an_agreement')?['body/status']"
+              }
+            ]
+          }
+        },
+        "Condition_-_Document_Status": {
+          "actions": {
+            "Get_a_PDF_of_a_signed_agreement": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f5d5aeec-7288-456b-a91a-575679f0b9be"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_adobesign_1",
+                  "operationId": "GetCombinedDocument_V2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_adobesign"
+                },
+                "parameters": {
+                  "agreementId": "@outputs('Get_the_status_of_an_agreement')?['body/id']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Create_file": {
+              "runAfter": {
+                "Get_a_PDF_of_a_signed_agreement": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0bf0552d-83a3-4150-874b-a91777db241c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://msunduzigovza.sharepoint.com/sites/Msunduzie-Forms",
+                  "folderPath": "/Shared Documents/Signed Applications/Add, Modify or Remove User Application",
+                  "name": "@outputs('Convert_Word_to_PDF')?['body/fileName']",
+                  "body": "@body('Get_a_PDF_of_a_signed_agreement')"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Get_files_(properties_only)": {
+              "runAfter": {
+                "Create_file": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5f08bfd9-43dd-4525-9b5a-7bb2155a1417"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "GetFileItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://msunduzigovza.sharepoint.com/sites/Msunduzie-Forms",
+                  "table": "d536b40e-96bd-4d40-82cb-2d0f3879052d",
+                  "folderPath": "/Shared Documents/Signed Applications"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_2": {
+              "foreach": "@outputs('Get_files_(properties_only)')?['body/value']",
+              "actions": {
+                "Compose": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "cf105a4a-0170-45ff-b0e8-91a0e0b06215"
+                  },
+                  "type": "Compose",
+                  "inputs": "@items('Apply_to_each_2')?['Created']"
+                },
+                "Year": {
+                  "runAfter": {
+                    "Compose": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "7c169b46-596b-4d25-a0f3-cccf28f36026"
+                  },
+                  "type": "Compose",
+                  "inputs": "@formatDateTime(outputs('Compose'), 'yyyy')"
+                },
+                "Month": {
+                  "runAfter": {
+                    "Year": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "8c006744-50bf-423d-8a9d-b88e9d94db92"
+                  },
+                  "type": "Compose",
+                  "inputs": "@formatDateTime(outputs('Compose'), 'MM')"
+                },
+                "Condition": {
+                  "actions": {
+                    "Get_file_content": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "940f4e50-093f-40ca-88de-177790d2b48d"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetFileContent",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://msunduzigovza.sharepoint.com/sites/Msunduzie-Forms",
+                          "id": "@items('Apply_to_each_2')?['{Identifier}']",
+                          "inferContentType": true
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Create_file_-_Managed": {
+                      "runAfter": {
+                        "Get_file_content": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "33dce86d-3371-47e0-963b-b7c72eceb383"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "CreateFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://msunduzigovza.sharepoint.com/sites/Msunduzie-Forms",
+                          "folderPath": "/Shared Documents/Signed Applications - Managed/Add, Modify or Remove User Application/@{outputs('Year')}/@{outputs('Month')}",
+                          "name": "@outputs('Convert_Word_to_PDF')?['body/fileName']",
+                          "body": "@body('Get_a_PDF_of_a_signed_agreement')"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "contentTransfer": {
+                          "transferMode": "Chunked"
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Month": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "equals": [
+                      "@items('Apply_to_each_2')?['{FilenameWithExtension}']",
+                      "@outputs('Convert_Word_to_PDF')?['body/fileName']"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "282dc4ba-d0cc-4ac0-be2c-af5caec63c3e"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Get_files_(properties_only)": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cc32c3ec-db6c-4642-8840-838e8e89c2e4"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Adobe_Sign_Response": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "8aa2292f-366b-4b19-a6ea-367a549769a4"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Succeeded"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@outputs('Get_the_status_of_an_agreement')?['body/status']",
+              "SIGNED"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "db7b4a4e-6197-4cc7-a940-6e80fb0e921c"
+          },
+          "type": "If"
+        },
+        "Scope": {
+          "actions": {
+            "Get_user_profile_-_ICT_Manager": {
+              "runAfter": {
+                "Get_user_profile_-_Applicants_Manager": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2d33650d-21da-4272-8475-6b0cffcfb652"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365users_1",
+                  "operationId": "UserProfile_V2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+                },
+                "parameters": {
+                  "id": "thozin@msunduzi.gov.za"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Send_an_HTTP_request": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d666e9e9-ebcf-4788-9697-5a98a802e9f3"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365groups",
+                  "operationId": "HttpRequest",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365groups"
+                },
+                "parameters": {
+                  "Uri": "https://graph.microsoft.com/v1.0/users/?$select=userPrincipalName,displayName,mail,jobTitle&$filter=jobTitle eq 'Server Administrator'",
+                  "Method": "GET",
+                  "ContentType": "application/json"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_user_profile_-_Applicants_Manager": {
+              "runAfter": {
+                "Filter_array": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c14d655d-ef74-44dc-be02-4d08132f24aa"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365users_1",
+                  "operationId": "UserProfile_V2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+                },
+                "parameters": {
+                  "id": "thozin@msunduzi.gov.za"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Parse_JSON": {
+              "runAfter": {
+                "Send_an_HTTP_request": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c6f75bb5-f673-462b-9bf7-3829a7711720"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Send_an_HTTP_request')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@@odata.context": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "userPrincipalName": {
+                            "type": "string"
+                          },
+                          "displayName": {
+                            "type": "string"
+                          },
+                          "mail": {
+                            "type": "string"
+                          },
+                          "jobTitle": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "userPrincipalName",
+                          "displayName",
+                          "mail",
+                          "jobTitle"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Filter_array": {
+              "runAfter": {
+                "Parse_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c9339f64-9971-4575-b8cd-89e66509cedb"
+              },
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Parse_JSON')?['value']",
+                "where": "@equals(item()?['userPrincipalName'], 'NkosinathiD@msunduzi.gov.za')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@body('Filter_array')",
+              "actions": {
+                "Get_user_profile_-_ICT_Personnel": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ceb549f5-c999-4ceb-b9d6-0e7a7c605bdd"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365users_1",
+                      "operationId": "UserProfile_V2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+                    },
+                    "parameters": {
+                      "id": "@items('Apply_to_each')?['userPrincipalName']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_user_profile_-_ICT_Manager": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bcacef89-8cec-403e-99a6-3869c61169f0"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Unique_Identifier": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e709b7f4-4417-475f-aa9d-4ad7772b6f97"
+          },
+          "type": "Scope"
+        },
+        "Unique_Identifier": {
+          "runAfter": {
+            "Get_response_details": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ed2004ca-f4de-46e7-9a6e-883b543d0794"
+          },
+          "type": "Compose",
+          "inputs": "@rand(1,9999)"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
