@@ -1,0 +1,75 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_adobesign": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr179_sharedadobesign_d5ca8"
+        },
+        "api": {
+          "name": "shared_adobesign"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_an_agreement_is_sent_to_a_participant": {
+          "metadata": {
+            "operationMetadataId": "60bf4797-f04c-462c-bb19-7fe5a215381b"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_adobesign",
+              "operationId": "CreateWebhookForAgreementSignatureRequestedEvent",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_adobesign"
+            },
+            "parameters": {
+              "WebhookCreationInfo/name": "TEst",
+              "WebhookCreationInfo/scope": "A specific agreement",
+              "WebhookCreationInfo/resourceId": "CBJCHBCAABAAyQCCKi12sk7DHpvEwB4fhsHwrHAtDTWB",
+              "WebhookCreationInfo/webhookConditionalParams/webhookAgreementEvents/includeDetailedInfo": false,
+              "WebhookCreationInfo/webhookConditionalParams/webhookAgreementEvents/includeParticipantsInfo": false,
+              "WebhookCreationInfo/webhookConditionalParams/webhookAgreementEvents/includeDocumentsInfo": false
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Apply_to_each": {
+          "foreach": "@triggerOutputs()?['body/agreement/participantSetsInfo/nextParticipantSets']",
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2b68dcf5-a53b-49e7-968c-18bab54a7709"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['status']"
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d70c2f25-7d11-4283-8f48-4b929f75e145"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
